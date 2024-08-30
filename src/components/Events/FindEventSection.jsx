@@ -20,7 +20,7 @@ export default function FindEventSection() {
           <button>Search</button>
         </form>
       </header>
-      <p>Please enter a search term and to find events.</p>
+      <p>Please Enter a search term to find events.</p>
     </section>
   );
 }
