@@ -36,7 +36,7 @@ export default function EventForm({ inputData, onSubmit, children }) {
           defaultValue={inputData?.title ?? ""}
         />
       </p>
-      {isPending && <p> Loading selectable images </p>}
+      {isPending && <p> Loading selectable images... </p>}
       {isError && <p> Please try again later.</p>}
       {data && (
         <div className="control">
