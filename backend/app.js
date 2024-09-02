@@ -1,5 +1,5 @@
 import fs from 'node:fs/promises';
-
+import cors from 'cors';
 import bodyParser from 'body-parser';
 import express from 'express';
 
@@ -7,6 +7,7 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(express.static('public'));
+app.use(cors());
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -165,9 +166,9 @@ app.delete('/events/:id', async (req, res) => {
 
   await fs.writeFile('./data/events.json', JSON.stringify(events));
 
-  setTimeout(() => {
-    res.json({ message: 'Event deleted' });
-  }, 1000);
+  
+  res.json({ message: 'Event deleted' });
+
 });
 
 app.listen(3000, () => {

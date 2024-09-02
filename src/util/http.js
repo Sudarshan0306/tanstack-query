@@ -79,16 +79,19 @@ export async function fetchEvent({ id, signal }) {
 }
 
 export async function deleteEvent({ id }) {
-  const response = await fetch(`http://localhost:3000/events/${id}`, {
-    method: "DELETE",
-  });
-
-  if (!response.ok) {
-    const error = new Error("An error occurred while deleting the event");
-    error.code = response.status;
-    error.info = await response.json();
-    throw error;
+  try {
+    const response = await fetch(`http://localhost:3000/events/${id}`, {
+      method: "DELETE",
+    });
+  
+    if (!response.ok) {
+      const errorDetails = await response.json();
+      throw new Error(`Error: ${response.status} ${response.statusText} - ${errorDetails.message}`);
+    }
+  
+    return response.json();
+  } catch (error) {
+    console.error("Error deleting event:", error);
+    throw error; // Re-throw the error to handle it elsewhere if needed
   }
-
-  return response.json();
 }
