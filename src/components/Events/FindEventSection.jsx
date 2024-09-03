@@ -20,7 +20,7 @@ export default function FindEventSection() {
     setSearchTerm(searchElement.current.value);
   }
 
-  let content = <p>Please Enter a search term to find events.</p>;
+  let content = <p>Please Enter a search term to find events!</p>;
 
   if (isLoading) {
     content = <LoadingIndicator />;
